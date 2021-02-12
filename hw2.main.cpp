@@ -4,37 +4,43 @@
 using namespace std;
 
 int main() {
-
+  cout << "Test b1 and b2 constructor" << endl;
   BigUInt b1(88408721);
   BigUInt b2(69606478);
-  //BigUInt b3;
+  cout << "--------------------------------------" << endl;
 
   b1.Print();
   cout << "Correct if b1 equals to 88408721" << endl;
   b2.Print();
   cout << "Correct if b2 equals to 69606478" << endl;
-  //b3.Print();
+  cout << "--------------------------------------" << endl;
+  // Test += function
+  b1 += b2;
+  b1.Print();
+  cout << "b1 += b2 should equal to 158015199" << endl;
 
   // New Testing Unit
-  BigUInt b4(385);
-  b4.Print();
-  cout << "Correct if b4 equals to 358" << endl;
+  BigUInt b3(385);
+  b3.Print();
+  cout << "Correct if b4 equals to 385" << endl;
+  cout << "--------------------------------------" << endl;
 
-  b4.TimesTenPow(6);
-  b4.Print();
-  b4.TimesTenPow(8);
-  cout << b4;
-  //b1 += b2;
-  //b1.Print();
-
-  b1.TimesTenPow(15);
+  b3.TimesTenPow(1);
+  b3.Print();
+  cout << "b3 x 10^1" << endl;
+  b3.TimesTenPow(8);
+  b3 += b1;
+  b3.Print();
+  cout << "--------------------------------------" << endl;
+  
   b1.Print();
-  cout << "Correct if b1 equals to 88408721 x 10^15" << endl;
+  b1.TimesTenPow(15);
+  b1.TimesTenPow(15);
   cout << b1 << endl;
-  //b1 += b2;
-  //b1.Print();
+  b1 += b2;
+  b1.Print();
 
-  //cout << b1;
+  cout << b1;
   return 0;
 }
 

@@ -56,9 +56,7 @@ public:
 	// 4. (1 point) Print the number represented by this BigUInt.
 	void Print() {
 		for (int i = length - 1; i >= 0; i--) {
-			cout << "index " << i << ": ";
 			cout << (int)data[i] << "";
-			cout << endl;
 		}
 		cout << endl;
 	};
@@ -90,7 +88,7 @@ public:
 		if (length < rhs.length) length = rhs.length;
 		int carry = 0;
 		int index = 0;
-		while (index < length) {
+		while (index < rhs.length) {
 			int sum = data[index] + rhs.data[index];
 			data[index] = (sum % 10) + carry;
 			carry = 1 ? sum > 9 : 0;
