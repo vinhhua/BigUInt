@@ -89,9 +89,8 @@ public:
 		int index = 0;
 		while (index < rhs.length) {
 			int sum = data[index] + rhs.data[index];
-			data[index] = (sum % 10) + carry;
+			data[index++] = (sum % 10) + carry;
 			carry = 1 ? sum > 9 : 0;
-			index++;
 		}
 
 		// Add left most siginificant digit (or carry)
