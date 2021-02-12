@@ -2,7 +2,6 @@
 #define HW2_BIGUINT_H
 
 #include <iostream>
-// FIX THE TimesTenPow()
 using namespace std;
 
 class BigUInt {

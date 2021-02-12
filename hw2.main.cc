@@ -9,9 +9,7 @@ int main() {
   BigUInt b2(69606478);
 
   b1.Print();
-  b2.Print();
 
-  cout << "b1 + b2 should equal to 158015199" << endl;
   b1 += b2;
   b1.Print();
 
