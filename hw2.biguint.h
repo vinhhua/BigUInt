@@ -32,6 +32,26 @@ public:
 		}
 		return count;
 	};
+	
+	// To resize the char array when called by the TenTimesPow() method
+	void resize(unsigned int n) {
+		unsigned char* oldData = data;
+		int initialLength = length - 1;
+		length = length + n;
+		data = new unsigned char[length];
+		int index = length - 1;
+		
+		// Transfer the old data into the new unsigned char array first up to old length (reverse order)
+		while (initialLength >= 0) {
+			data[index--] = oldData[initialLength--];
+		}
+
+		// Then fill in the rest with 0's (reverse order)
+		while (index >= 0) {
+			data[index--] = 0;
+		}
+		delete [] oldData;
+	};
 
   	// 2. (5 points) Initializes the BigUInt to n.
   	// Allocate data to an array the number of digits.
@@ -63,27 +83,29 @@ public:
   	// 5. (4 points) Set this BigUInt to original value times 10^p.
   	// Allocate space as neccessary.
   	void TimesTenPow(unsigned int p) {
-		unsigned char* oldData = data;
-		int initialLength = length - 1;
-		length = length + p;
-		data = new unsigned char[length];
-		int index = length - 1;
-		// Transfer the old data into the new unsigned char array first up to the old length
-		while (initialLength >= 0) {
-			data[index--] = oldData[initialLength--];
-		}
-		// Then fill in the rest with 0's after the initial length's index
-		while (index >= 0) {
-			data[index--] = 0;
-		}
-		delete [] oldData;
+		resize(p);
 	};
+
+	// Add another digit method
+	//void AddDigit;
 
   	// 6. (6 points) Set this BigUInt to original value plus rhs.
   	// Allocate space as necessary.
-  	/*BigUInt& operator+=(const BigUInt& rhs) {
-		
-	};*/
+  	BigUInt& operator+=(const BigUInt& rhs) {
+		if (length < rhs.length) length = rhs.length;
+		int carry = 0;
+		for (int i=0; i < length; i++) {
+			int sum = data[i] + rhs.data[i];
+			int flag = 1 ? sum > 9 : 0;
+			data[i] = sum + flag;
+		}
+
+		if (carry != 0) {
+			resize(1);
+			data[0] = carry;
+		}
+		return *this;
+	};
 
 
   	// 7. (2 points) Print the number represented by this BigUInt.
